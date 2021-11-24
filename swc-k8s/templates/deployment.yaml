@@ -22,18 +22,18 @@ spec:
           image: {{ .Values.deployment.image }}
           env:
             - name: OBSRVBL_HOST
-              value: {{ .Values.sca.host }}
+              value: "{{ .Values.sca.host }}"
             - name: OBSRVBL_SERVICE_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.sca.secret_name }}
                   key: service_key
             - name: OBSRVBL_KUBERNETES_WATCHER
-              value: {{ .Values.sca.kubernetes_watcher }}
+              value: "{{ .Values.sca.kubernetes_watcher }}"
             - name: OBSRVBL_HOSTNAME_RESOLVER
-              value: {{ .Values.sca.hostname_resolver }}
+              value: "{{ .Values.sca.hostname_resolver }}"
             - name: OBSRVBL_NOTIFICATION_PUBLISHER
-              value: {{ .Values.sca.notification_publisher }}
+              value: "{{ .Values.sca.notification_publisher }}"
             - name: OBSRVBL_POD_NAME
               valueFrom:
                 fieldRef:

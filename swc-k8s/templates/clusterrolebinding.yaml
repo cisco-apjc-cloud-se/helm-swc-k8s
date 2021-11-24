@@ -6,6 +6,7 @@ metadata:
     {{- include "swc-k8s.labels" . | nindent 4 }}
 subjects:
   - kind: ServiceAccount
+    namespace: {{ .Values.sca.namespace }}
     name: {{ .Values.serviceAccount.name }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io

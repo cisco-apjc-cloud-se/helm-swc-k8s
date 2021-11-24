@@ -5,6 +5,7 @@ sca:
   kubernetes_watcher: true
   hostname_resolver: false
   notification_publisher: false
+  namespace: "sca"
 
 serviceAccount:
   # Specifies whether a service account should be created
