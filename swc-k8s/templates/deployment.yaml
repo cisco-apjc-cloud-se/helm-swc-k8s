@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ .Values.deployment.name }}
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Values.deployment.name }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      hostNetwork: true
+      containers:
+        - name: ona
+          image: {{ .Values.deployment.image }}
+          env:
+            - name: OBSRVBL_HOST
+              value: {{ .Values.sca.host }}
+            - name: OBSRVBL_SERVICE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.sca.secret_name }}
+                  key: service_key
+            - name: OBSRVBL_KUBERNETES_WATCHER
+              value: {{ .Values.sca.kubernetes_watcher }}
+            - name: OBSRVBL_HOSTNAME_RESOLVER
+              value: {{ .Values.sca.hostname_resolver }}
+            - name: OBSRVBL_NOTIFICATION_PUBLISHER
+              value: {{ .Values.sca.notification_publisher }}
+            - name: OBSRVBL_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name

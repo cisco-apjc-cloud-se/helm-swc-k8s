@@ -1,0 +1,20 @@
+sca:
+  secret_name: "obsrvbl"
+  service_key: ""
+  host: "https://sensor.ext.obsrvbl.com"
+  kubernetes_watcher: true
+  hostname_resolver: false
+  notification_publisher: false
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "obsrvbl"
+
+deployment:
+  name: "obsrvbl-ona"
+  image: "obsrvbl/ona:latest" # obsrvbl/ona:4.2
