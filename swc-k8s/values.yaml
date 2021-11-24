@@ -1,6 +1,6 @@
 sca:
   secret_name: "obsrvbl"
-  service_key: "placeholder"
+  service_key: ""
   host: "https://sensor.ext.obsrvbl.com"
   kubernetes_watcher: true
   hostname_resolver: false

@@ -10,6 +10,8 @@ spec:
     metadata:
       labels:
         name: {{ .Values.deployment.name }}
+        labels:
+          {{- include "swc-k8s.labels" . | nindent 4 }}
     spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       tolerations:
